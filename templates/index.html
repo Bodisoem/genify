@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <h1>Wellcome to Genify</h1>
+        <ol class="shows">
+            
+            <div class='container'>
+                {% for key,value in artist_tracks.items() %}
+                <div class='item'>
+                    <p><b>{{key}}'s top tracks</b></p>
+                    {% for track in value%}
+                    <div>
+                        <iframe src="https://open.spotify.com/embed/track/{{track}}" width="100%" height="80" 
+                        frameBorder="0" allowtransparency="true" allow="encrypted-media"
+                        style="padding-top: 0.2rem;padding-bottom: 0.3rem;"></iframe></iframe>
+                    </div>
+                    {%endfor%}
+                </div>
+                {% endfor %}
+            </div>
+            
+        </ol>
+    </body>
+</html>
