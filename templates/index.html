@@ -1,26 +1,79 @@
 <html>
     <head>
+        <meta charset="UTF-8">
         <link rel="stylesheet" href="/static/style.css">
+        <link rel="icon" href="favicon-16x16.png"/>
+        <title>Genify</title>
     </head>
     <body>
-        <h1>Wellcome to Genify</h1>
+        <form role="search" id="form">
+            <input type="search" id="query" name="q"
+             placeholder="Search..."
+             aria-label="Search through site content">
+            <button>
+              <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+            </button>
+        </form>
+        <div class="message">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <p> Lastest tracks from your favorite artists </p>
+                        <h2> Genify </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="justify-content-center">
+            <div class="col-lg-9">
+                <div class="albums-text">
+                    <p> An user-friendly web application that allows users to see their favorite artists' songs on Spotify and links to their lyrics on Genius. </p>
+                </div>
+            </div>
+        </div>
+
         <ol class="shows">
-            
             <div class='container'>
-                {% for key,value in artist_tracks.items() %}
+                {% for artists, tracks in artist_tracks.items() %}
                 <div class='item'>
-                    <p><b>{{key}}'s top tracks</b></p>
-                    {% for track in value%}
+                    <p><b>{{artists}}'s top tracks</b></p>
+                    {% for track in tracks%}
                     <div>
-                        <iframe src="https://open.spotify.com/embed/track/{{track}}" width="100%" height="80" 
+                        <iframe src="https://open.spotify.com/embed/track/{{track['id']}}" width="70%" height="80" 
                         frameBorder="0" allowtransparency="true" allow="encrypted-media"
                         style="padding-top: 0.2rem;padding-bottom: 0.3rem;"></iframe></iframe>
+                    </div>
+                    <div>
+                        <div class="check_out_lyric">Check <a href="https://genius.com{{track['path']}}"> {{track['name']}} by {{artists}}</a> on Genius</div>
                     </div>
                     {%endfor%}
                 </div>
                 {% endfor %}
             </div>
-            
         </ol>
+
+        <div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <p> Now have a taste of some new tracks with their lyrics from Genius </p>
+                    </div>
+                </div>
+            </div>
+            <div class='container'>
+                {% for tracks in new_releases %}
+                <div>
+                    <iframe src="https://open.spotify.com/embed/{{tracks['type']}}/{{tracks['spotify_id']}}" width="100%" height="80" 
+                    frameBorder="0" allowtransparency="true" allow="encrypted-media"
+                    style="padding-top: 0.2rem;padding-bottom: 0.3rem;"></iframe></iframe>
+                    <div id="rg_embed_link_{{tracks['genius_id']}}" class='rg_embed_link' data-song-id="{{tracks['genius_id']}}">Read 
+                        <a href="https://genius.com{{tracks['genius_path']}}">{{tracks['name']}}</a> on Genius
+                    </div> 
+                    <script crossorigin src="//genius.com/songs/{{tracks['genius_id']}}/embed.js"></script>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
     </body>
 </html>
