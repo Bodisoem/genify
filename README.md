@@ -12,8 +12,17 @@ Login to your heroku account using this command.
 ```sh
 $ heroku login -i
 ```
+## Sign up for Spotify Developer Account
+1. Login or Sign Up: [Spotify Dashboard](https://developer.spotify.com/dashboard/login)
+2. When creating a New App, make sure you know your Client ID and Client Secret.
+3. Learn more about Spotify APIs at [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
 
+## Sign up for Genius APIs
+For this project, we only use one-time generate access token from Genius APIs:
+1. Fill up information in [Genius APIs Client management page](https://genius.com/api-clients) - you can choose random websites for test purposes.
+2. Make sure you hit the **Generate Access Token** button and include it with the Spotify info above value into the .env file (which we will go on later).
 
+## Cloning and some important files
 Clone this repo and download all the packages inside requirements.txt
 ```sh
 $ git clone https://github.com/Bodisoem/genify.git
