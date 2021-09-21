@@ -16,8 +16,8 @@ $ heroku login -i
 
 Clone this repo and download all the packages inside requirements.txt
 ```sh
-$ git clone https://github.com/csc4350-f21/project1-dvu11.git
-$ cd project1-dvu11/
+$ git clone https://github.com/Bodisoem/genify.git
+$ cd genify/
 $ pip install -r requirements.txt
 ```
 
